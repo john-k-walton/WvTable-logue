@@ -46,6 +46,7 @@
 #define __userosc_h
 
 #include <stdint.h>
+#include <stddef.h>
 
 #include "osc_api.h"
 #include "userprg.h"

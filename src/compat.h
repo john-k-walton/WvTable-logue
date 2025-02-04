@@ -31,5 +31,6 @@
 // 32-bit types
 typedef long q7_24_t; // Q7.24 signed
 typedef unsigned long uq7_25_t; // Q7.25 unsigned
+typedef long q31_t;  // Q31 signed
 
 #endif
