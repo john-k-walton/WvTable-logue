@@ -12,9 +12,9 @@
         "params" : [
             ["Wavetable",    0,  95, "%"],
             ["Env Attack",   0, 100, "%"],
-            ["Env Decay",    0, 100, "%"],
+            ["Env Decay",  -99, 100, "%"],
             ["Env Amount", -99, 100, "%"],
-            ["LFO2 Rate",  -99, 100, "%"],
+            ["LFO2 Rate",    0, 100, "%"],
             ["LFO2 Amount",  0, 100, "%"]
           ]
     }
