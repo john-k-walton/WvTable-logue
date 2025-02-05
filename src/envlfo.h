@@ -98,7 +98,7 @@ _INLINE void envlfo_set_env_amount(EnvLfoState* state, int8_t amount)
 */
 _INLINE void envlfo_set_atime(EnvLfoState* state, float atime)
 {
-    if (atime > 1e-6)
+    if (atime > 1e-6f)
         state->arate = (uint32_t)((float)FIXED_ONE / (state->sample_rate * atime) + 0.5f);
     else
         state->arate = FIXED_ONE;
@@ -110,7 +110,7 @@ _INLINE void envlfo_set_atime(EnvLfoState* state, float atime)
 */
 _INLINE void envlfo_set_dtime(EnvLfoState* state, float dtime)
 {
-    if (dtime > 1e-6)
+    if (dtime > 1e-6f)
         state->drate = (uint32_t)((float)FIXED_ONE / (state->sample_rate * dtime) + 0.5f);
     else
         state->drate = FIXED_ONE;
@@ -177,12 +177,14 @@ _INLINE void envlfo_set_lfo_rate(EnvLfoState* state, uint32_t rate)
 _INLINE void envlfo_note_on(EnvLfoState* state)
 {
     envlfo_reset(state);
+    state->decay_scale = state->env_amount;
     if (state->arate < FIXED_ONE) {
         state->stage = ENV_A;
         state->env_val = 0;
     } else if (state->hold) {
         state->stage = ENV_S;
         state->env_val = FIXED_ONE;
+        state->sus_val = state->env_amount * 0x1000000;
     } else if (state->drate < FIXED_ONE) {
         state->stage = ENV_D;
         state->env_val = FIXED_ONE;
